@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,
+            initial-scale=1.0">
+        <title>EasyAdmin.finance$</title>
+        <link rel="shortcut icon" href="./assets/favicon.svg" type="image/svg">
+
+        <link rel="stylesheet" href="./style.css">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+        
+        <script language=javascript type="text/javascript">
+            dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+            monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro")
+            now = new Date
+        </script>
+    
+    </head>
+
+    <body onload="time()">
+        <header>
+            <img id="imglogo" src="./assets/small-logo.png" alt="Logo EasyAdmin.finance$">
+        </header>
+        
+        <main class="container">
+            <section id="balance">
+                <h2 class="sr-only">Balanço</h2>
+
+                <div class="card">
+                    <h3>
+                        <span>
+                            Entradas
+                        </span>
+                        <img src="./assets/iconincome.svg" alt="Imagem de Entradas" id="iconincome">
+                    </h3>
+                    <p id="incomeDisplay">R$ 0,00</p>
+                </div>
+                <div class="card">
+                    <h3>
+                        <span>
+                            Saída
+                        </span>
+                        <img src="./assets/iconexpense.svg" alt="Imagem de Entradas" id="iconexpense">
+                    </h3>
+                    <p id="expenseDisplay"R$ 0,00></p>
+                </div>
+                <div class="card total">
+                    <h3>
+                        <span>
+                            Total
+                        </span>
+                        <img src="./assets/total1.svg" alt="Imagem de Entradas" id="icontotal">
+                    </h3>
+                    <p id="totalDisplay">R$ 0,00</p>
+                </div>
+            </section>
+
+            <section id="btnprincipal">
+                <a href="#" 
+                onclick="Modal.open()"
+                class="button new"><p>+ Nova Transação</p></a>
+            </section>
+
+            <section id="transaction">
+                <h2 class="sr-only">Transações</h2>
+
+                
+
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th><b>DESCRIÇÃO</b></th>
+                            <th><b>VALOR</b></th>
+                            <th><b>DATA(_/_/__)</b></th>
+                            <th><b>REMOVER</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <div class="modal-overlay">
+            <div class="modal">
+                <div id="form">
+                    <h2>Nova Transação</h2>
+                    <form action="" onsubmit="Form.submit(event)">
+                        <div class="input-group">
+                            <h3>
+                                <label 
+                                    class="sr-only" 
+                                    for="description"><h2>Descrição</h2></label>
+                                <input 
+                                    type="text" 
+                                    id="description" 
+                                    name="description"
+                                    placeholder="Descrição"
+                                />
+                            </h3>
+                        </div>
+
+                        <div class="input-group">
+                            <h3>
+                                <label 
+                                    class="sr-only" 
+                                    for="amount">Valor</label>
+                                <input 
+                                    type="tel" 
+                                    step="0.01"
+                                    id="amount"
+                                    name="amount"
+                                    placeholder="0,00"
+                                />
+                                <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+                            </h3>
+                        </div>
+
+                        <div class="input-group">
+                            <h3>
+                                <label 
+                                    class="sr-only" 
+                                    for="date">Data</label>
+                                <input 
+                                    type="date" 
+                                    id="date" 
+                                    name="date"
+                                />
+                            </h3>
+                        </div>
+
+                        <div class="input-group actions">
+                            <a 
+                            onclick="Modal.close()"
+                            href="#" 
+                            class="button cancel"><h3>Cancelar</h3></a>
+                            <button><h3>Salvar</h3></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <script src="./scripts.js"></script>
+            
+        <div class="data-hora">
+            <div id="footer1">
+                <script>
+                    // Função para formatar 1 em 01
+                    const zeroFill = n => {
+                        return ('0' + n).slice(-2);
+                    }
+    
+                    // Cria intervalo
+                    const interval = setInterval(() => {
+                        // Pega o horário atual
+                        const now = new Date();
+    
+                        // Formata a data conforme dd/mm/aaaa hh:ii:ss
+                        const data = "Hoje é " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ".";
+                        const Hora = zeroFill(now.getHours()) + ' : ' + zeroFill(now.getMinutes()) + ' : ' + zeroFill(now.getSeconds());
+                        // Exibe na tela usando a div#data-hora
+                        document.getElementById('footer1').innerHTML = data;
+                        document.getElementById('footer2').innerHTML = Hora;
+                    }, 1000);
+                </script>
+            </div>
+            <body onload="time()">
+                <div id="footer2" > 
+                </div>
+            </body>
+            <footer><p>2021 - EasyAdmin.finance$&reg; - ALL RIGHTS RSERVED</p></footer>
+        </div>
+        
+    </body>
+
+</html>
